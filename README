@@ -12,3 +12,13 @@ be secure too. It also has a low memory foot-print. The aim of the project is
 that all of the usual functionality that you have in other frameworks 
 (cookie handling, session management, templating etc) will be implemented via 
 loosly coupled components with clean APIs.
+
+Build Instructions
+==================
+
+From within the project directory:
+
+$ mkdir build
+$ cd build
+$ cmake ../
+$ make

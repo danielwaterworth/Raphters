@@ -22,3 +22,8 @@ $ mkdir build
 $ cd build
 $ cmake ../
 $ make
+
+Deployment
+==========
+
+The examples are deployable via fastcgi.

@@ -1,0 +1,53 @@
+RAPHT, a architectural pattern for writing applications
+=======================================================
+
+Overview
+========
+
+RAPHT was designed for the web. It is basically an extension to MVC that 
+provides greater security and flexibility.
+
+Parts
+=====
+
+R - Resource
+A - Action
+P - Processor
+H - Handler
+T - Template
+
+Resources
+=========
+
+Resources are things that you can interact with. This could be a database or an 
+external API for example.
+
+Action
+======
+
+A action is a way to interact with a resource. Typically it is given 
+information that relates to authentication as well as information about the 
+request. Resources are not accessed without actions.
+
+Processor
+=========
+
+A transformation of data.
+
+Handler
+=======
+
+The entry point for a request. In a web application, a url regex is typically 
+mapped to a handler.
+
+Template
+========
+
+Renders data.
+
+Afterword
+=========
+
+There is a clear divide between the RA parts and the HPT parts. Whereas the HPT 
+parts can be executed on the untrusted client-side, the RA parts must be 
+executed under a trusted environment.

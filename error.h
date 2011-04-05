@@ -17,12 +17,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "raphters.h"
+#ifndef ERROR_H
+#define ERROR_H
 
-void serve_forever() {
-    init_handlers();
-    while(FCGI_Accept() >= 0) {
-        dispatch();
-    }
-    cleanup_handlers();
-}
+#include "stdio.h"
+#include "stdlib.h"
+
+#define LOG_ERROR(msg) \
+fprintf(stderr, "raphters: %s\n", msg)
+
+#define FAIL_WITH_ERROR(msg) \
+fprintf(stderr, "raphters, fatal: %s\n"); \
+exit(1)
+
+#endif

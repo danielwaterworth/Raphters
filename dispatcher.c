@@ -19,6 +19,7 @@
 
 #include "dispatcher.h"
 #include "request.h"
+#include "error.h"
 
 #include "string.h"
 
@@ -58,12 +59,8 @@ void dispatch() {
     }
     for (cur = head; cur != NULL; cur = cur->next) {
         if (cur->method == method) {
-            if (cur->regex == NULL) {
-                cur->regex = malloc(sizeof(regex_t));
-                regcomp(cur->regex, cur->regex_str, 0);
-            }
             regmatch_t *matches = malloc(sizeof(regmatch_t) * cur->nmatch);
-            int m = regexec(cur->regex, path_info, cur->nmatch, matches, 0);
+            int m = regexec(&cur->regex, path_info, cur->nmatch, matches, 0);
             if (m == 0) {
                 cur->func(matches);
                 free(matches);
@@ -82,4 +79,22 @@ void add_handler(handler *h) {
         last->next = h;
     }
     last = h;
+}
+
+void init_handlers() {
+    handler *cur = head;
+    while (cur != NULL) {
+        if (regcomp(&cur->regex, cur->regex_str, 0) != 0) {
+            FAIL_WITH_ERROR("could not compile regex");
+        }
+        cur = cur->next;
+    }
+}
+
+void cleanup_handlers() {
+    handler *cur = head;
+    while (cur != NULL) {
+        regfree(&cur->regex);    
+        cur = cur->next;
+    }
 }

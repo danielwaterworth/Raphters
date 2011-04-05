@@ -18,7 +18,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(RaphtersSources dispatcher request response raphters)
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}")
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}" "/usr/local/include")
+LINK_DIRECTORIES("/usr/local/lib")
 
 ADD_LIBRARY(raphters_dynamic SHARED ${RaphtersSources})
 SET_TARGET_PROPERTIES(raphters_dynamic PROPERTIES LINKER_LANGUAGE C)

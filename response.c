@@ -99,4 +99,5 @@ void response_send(response *res) {
         free(cur_s);
         cur_s = next;
     }
+    free(res);
 }

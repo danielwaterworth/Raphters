@@ -27,7 +27,7 @@
 fprintf(stderr, "raphters: %s\n", msg)
 
 #define FAIL_WITH_ERROR(msg) \
-fprintf(stderr, "raphters, fatal: %s\n"); \
+fprintf(stderr, "raphters, fatal: %s\n", msg); \
 exit(1)
 
 #endif

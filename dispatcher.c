@@ -37,6 +37,10 @@ void (*error_handler)(const char *) = default_error_handler;
 void dispatch() {
     handler *cur;
     char *path_info = get_path_info();
+    if (path_info == NULL) {
+        error_handler("NULL path_info");
+        return;
+    }
     char *method_str = get_method();
     if (method_str == NULL) {
         error_handler("NULL method_str");
